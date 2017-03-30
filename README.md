@@ -13,9 +13,7 @@
 
 ## 服务端
 由于微信小程序需要使用api来获得json数据，使用flask来制作api,　使用sqlalchemy做数据池连接，目前可用的api有两个：
-1.`/lecture/lastweek` : 获取一周内的讲座信息
-2.`/lecture/search?keyword={}` : 根据关键词进行讲座标题的模糊搜索
+1. `/lecture/lastweek` : 获取一周内的讲座信息
+2. `/lecture/search?keyword={}` : 根据关键词进行讲座标题的模糊搜索
 
 部署建议：nginx+supervisor+flask
-
-
