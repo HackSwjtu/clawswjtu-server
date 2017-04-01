@@ -1,4 +1,4 @@
-#claw-swjtu deploy
+# claw-swjtu deploy
 
 本次部署的方案是: flask+gunicorn+gevent+nginx+supervisor
 ## 安装pyenv
@@ -51,7 +51,7 @@ libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev x
 `pyenv activate $name`
 `pip install gunicorn gevent supervisor`
 
-###配置supervisor
+### 配置supervisor
 
 进入项目文件夹，然后输出 supervisor 默认配置文件 `supervisor.conf `: ($name 是 virtualenv 环境的名称)
 `~/.pyenv/versions/$name/bin/echo_supervisord_conf > supervisor.conf`
@@ -74,7 +74,7 @@ stderr_logfile=/home/myproject/log/gunicorn.err                          ; 错�
 - run:app 是 Flask 项目入口，如果你用的是create_app() 方法的话， 就改成run:create_app()
 - 所有目录都需要使用绝对路径
 
-###操作 Supervisor
+### 操作 Supervisor
 
 - 启动 Supervisor
 `~/.pyenv/versions/$name/bin/supervisord -c supervisor.conf`
@@ -112,7 +112,7 @@ acme.sh  --installcert  -d  mydomain.com   \
         --reloadcmd  "service nginx force-reload"
 ```
 
-###Nginx配置
+### Nginx配置
 进入 Nginx配置文件，或者`/etc/nginx/conf.d/default.conf` ，或者新建 `/etc/nginx/conf.d/myproject.conf`，修改配置文件:
 - 禁止 IP 访问
 ```
