@@ -14,5 +14,10 @@ def get_lastweek_lecture():
 def search_lecture():
     return  jsonify(searchlecture(request.args.get('keyword')))
 
+@app.route('/')
+def index():
+    return "hello world"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
