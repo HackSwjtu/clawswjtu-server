@@ -5,7 +5,8 @@ import pymysql
 from datetime import *
 
 
-engine = create_engine("mysql+pymysql://root:password@ip:port/db?charset=utf8", encoding='utf-8', pool_size=100, pool_recycle=3600, echo=True)
+engine = create_engine("mysql+pymysql://root:labdata@119.23.134.248/lectureInfo?charset=utf8", encoding='utf-8', pool_size=100, pool_recycle=3600, echo=True)
+
 
 def getlastweeklecture():
     conn = engine.raw_connection()
@@ -24,9 +25,28 @@ def getlastweeklecture():
         detail = each[6]
         lecture.append({"id": id, "title": title, "time": time, "place": place, "speaker": speaker, "speakerbrif": speakerbrif, "detail": detail})
     data = {"lecture": lecture}
-    print(data)
+    #print(data)
     conn.close()
     return data
+
+def getrecentcompetition():
+    conn = engine.raw_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM Competition WHERE publishdate <= DATE_ADD(CURDATE(), INTERVAL 60 DAY) order by publishdate")
+    competition = []
+    for each in cur.fetchall():
+        #print(each)
+        id = each[0]
+        title = each[1]
+        publishdate = datetime.strftime(each[2], '%Y-%m-%d %H:%M')
+        detail = each[3]
+        competition.append({"id": id, "title": title, "publishdate": publishdate, "detail": detail})
+    data = {"competition": competition}
+    #print(data)
+    conn.close()
+    return data
+
+
 
 def searchlecture(keyword):
     conn = engine.raw_connection()

@@ -3,6 +3,7 @@
 from flask import Flask, jsonify, request
 from DatabaseUtils import getlastweeklecture
 from DatabaseUtils import searchlecture
+from DatabaseUtils import getrecentcompetition
 
 app = Flask(__name__)
 
@@ -13,6 +14,11 @@ def get_lastweek_lecture():
 @app.route('/lecture/search', methods=['GET'])
 def search_lecture():
     return  jsonify(searchlecture(request.args.get('keyword')))
+
+@app.route('/competition/recent', methods=['GET'])
+def get_recent_competition():
+    return jsonify(getrecentcompetition())
+
 
 @app.route('/')
 def index():
