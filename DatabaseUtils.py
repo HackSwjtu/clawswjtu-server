@@ -5,7 +5,7 @@ import pymysql
 from datetime import *
 
 
-engine = create_engine("mysql+pymysql://root:labdata@119.23.134.248/lectureInfo?charset=utf8", encoding='utf-8', pool_size=100, pool_recycle=3600, echo=True)
+engine = create_engine("mysql+pymysql://root:password@ip/lectureInfo?charset=utf8", encoding='utf-8', pool_size=100, pool_recycle=3600, echo=True)
 
 
 def getlastweeklecture():
